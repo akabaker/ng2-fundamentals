@@ -3,15 +3,24 @@ import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { ISession } from "../index";
 
 @Component({
-    templateUrl: 'app/events/event-details/create-session.component.html'
+    templateUrl: 'app/events/event-details/create-session.component.html',
+    styles: [`
+        em {float:right; color:#E05C65; padding-left:10px;}
+        .error input, .error select, .error textarea {background-color:#E3C3C5;}
+        .error ::-webkit-input-placeholder {color:#999;}
+        .error ::-moz-placeholder {color:#999;}
+        .error :-moz-placeholder {color:#999;}
+        .error ::webkit-input-placeholder {color:#999;}
+        .error ::-ms-input-placeholder {color:#999;}
+    `]
 })
-export class CreateSessionComponent {
-    abstract: FormControl;
-    level: FormControl;
-    duration: FormControl;
-    presenter: FormControl;
-    name: FormControl;
-    newSessionForm: FormGroup;
+export class CreateSessionComponent implements OnInit {
+    newSessionForm: FormGroup
+    abstract: FormControl
+    level: FormControl
+    duration: FormControl
+    presenter: FormControl
+    name: FormControl
 
     saveSession(formValues) {
         let session:ISession = {
@@ -23,6 +32,7 @@ export class CreateSessionComponent {
             abstract: formValues.abstract,
             voters: []
         }
+        console.log(session)
     }
     
     ngOnInit() {
