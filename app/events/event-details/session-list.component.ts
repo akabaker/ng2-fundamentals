@@ -18,6 +18,14 @@ export class SessionListComponent implements OnChanges {
         }
     }
 
+    toggleVote(session:ISession) {
+        if(this.userHasVoted(session)) {
+            this.voterService.deleteVoter(session, this.auth.currentUser.userName);
+        } else {
+            this.voterService.addVoter(session, this.auth.currentUser.userName);
+        }
+    }
+
     filterSessions(filter) {
         if(filter === 'all') {
             this.visibleSessions = this.sessions.slice(0);
