@@ -12,8 +12,8 @@ import { Component, EventEmitter, Input, Output} from '@angular/core';
                 </div>
                 <div class="badge badge-inverse votingCount">
                     <div>{{count}}</div>
-                </div>
             </div>
+        </div>
     `
 })
 export class UpvoteComponent {
