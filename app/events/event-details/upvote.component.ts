@@ -5,7 +5,7 @@ import { Component, EventEmitter, Input, Output} from '@angular/core';
     styleUrls: ['/app/events/event-details/upvote.component.css'],
     template: `
         <div class="votingWidgetContainer pointable" (click)="onClick()">
-            <div class="well votingWidget"></div>
+            <div class="well votingWidget">
                 <div class="votingButton">
                         <i *ngIf="voted" class="glyphicon glyphicon-heart"></i>
                         <i *ngIf="!voted" class="glyphicon glyphicon-heart-empty"></i>
@@ -14,7 +14,6 @@ import { Component, EventEmitter, Input, Output} from '@angular/core';
                     <div>{{count}}</div>
                 </div>
             </div>
-        </div>
     `
 })
 export class UpvoteComponent {
