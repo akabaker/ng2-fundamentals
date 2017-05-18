@@ -18,11 +18,12 @@ export class VoterService {
     }
 
     addVoter(eventId: number, session: ISession, voterName: string) {
+        session.voters.push(voterName);
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers});
         let url = `/api/events/${eventId}/sessions/${session.id}/voters/${voterName}`;
 
-        this.http.post(url, {}, options).catch(this.handleError).subscribe();
+        this.http.post(url, JSON.stringify({}), options).catch(this.handleError).subscribe();
     }
 
     userHasVoted(session: ISession, voterName: string) {
