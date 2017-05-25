@@ -1,5 +1,5 @@
 import {TestBed, async, ComponentFixture} from '@angular/core/testing'
-import {DebugElement} from '@angular/core'
+import {DebugElement, Component, NO_ERRORS_SCHEMA} from '@angular/core'
 import {SessionListComponent} from './session-list.component'
 import {UpvoteComponent} from './upvote.component'
 import {DurationPipe} from '../shared/duration.pipe'
@@ -16,22 +16,29 @@ describe('SessionListComponent', () => {
     let debugEl: DebugElement;
 
     beforeEach(async(() => {
-        let mockAuthService = {};
-        let mockVoterService = {};
+        let mockAuthService = {
+            isAuthenticated: () => true,
+            currentUser: {userName: 'Joe'}
+        };
+        let mockVoterService = {
+            userHasVoted: () => true
+        };
 
         TestBed.configureTestingModule({
             imports: [],
             declarations: [
                 SessionListComponent,
-                UpvoteComponent,
+                //UpvoteComponent,
                 DurationPipe,
-                CollapsibleWellComponent
+                //CollapsibleWellComponent
             ],
             providers: [
                 {provide: AuthService, useValue: mockAuthService},
                 {provide: VoterService, useValue: mockVoterService},
             ],
-            schemas: []
+            schemas: [
+                NO_ERRORS_SCHEMA
+            ]
         }).compileComponents();
     }))
 
@@ -60,7 +67,8 @@ describe('SessionListComponent', () => {
             component.ngOnChanges();
             fixture.detectChanges();
 
-            expect(element.querySelector('[well-title]').textContent).toContain('Session 1');
+            //expect(element.querySelector('[well-title]').textContent).toContain('Session 1');
+            expect(debugEl.query(By.css('[well-title]')).nativeElement.textContent).toContain('Session 1');
         })
     })
 })
